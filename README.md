@@ -6,6 +6,6 @@ Only works on Mac OS (for now).
 TODO: Adapt to all platforms.
 
 
-Screenshots
+# Screenshots
 
 ![alt text](screenshots/42.png "Picture of the test map 42.fdf")
