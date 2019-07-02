@@ -24,6 +24,23 @@ static int	check_chars(char *str)
 	return (1);
 }
 
+static int	count_chars(char *str)
+{
+	int		i;
+	int		cmp;
+
+	i = -1;
+	cmp = 0;
+	while (str[++i])
+	{
+		while (str[i] != ' ')
+			i++;
+		if (str[i] && ft_isdigit(str[i]))
+			cmp++;
+	}
+	return (cmp);
+}
+
 static int	check(int fd)
 {
 	int		len;
@@ -34,11 +51,11 @@ static int	check(int fd)
 		ft_strdel(&line);
 		return (1);
 	}
-	len = ft_strlen(line);
+	len = count_chars(&line);
 	ft_strdel(&line);
 	while (get_next_line(fd, &line))
 	{
-		if (len != ft_strlen(line) || !check_chars(line))
+		if (!check_chars(line) || (count_chars(line) != len))
 		{
 			ft_strdel(&line);
 			return (1);
