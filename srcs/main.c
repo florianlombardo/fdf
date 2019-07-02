@@ -11,30 +11,21 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/parsing.h"
 
 int		main(int ac, char **av)
 {
-	t_fdf	f;
+	char	**map;
 
 	if (ac == 2)
 	{
-		nofile(av[1]);
-		if (ft_parse(&f, av[1]))
-			return (fdferror(&f));
-		f.pmlx = mlx_init();
-		f.pwin = mlx_new_window(f.pmlx, SIZE, SIZE, "fdf");
-		f.c = 3;
-		ft_draw_iso(&f);
-		mlx_key_hook(f.pwin, deal_key, &f);
-		mlx_loop(f.pmlx);
+		check_file(argv[1]);
+		map = parse(argv[1]);
 	}
 	else
 	{
 		ft_putendl_fd("Usage : ./fdf <filename>", 2);
 		return (EXIT_FAILURE);
 	}
-	mlx_destroy_window(f.pmlx, f.pwin);
-	free_map(&(f.map), f.size_y);
 	return (EXIT_SUCCESS);
 }
