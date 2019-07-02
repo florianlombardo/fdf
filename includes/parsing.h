@@ -14,6 +14,10 @@
 #ifndef PARSING_H
 # define PARSING_H
 
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
 char	**parse(char *filename);
 
 #endif
