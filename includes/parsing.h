@@ -14,7 +14,6 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-int		check_file(char *filename);
 char	**parse(char *filename);
 
 #endif
