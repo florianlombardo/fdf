@@ -13,3 +13,12 @@
 
 #include "../includes/parsing.h"
 
+int		check_file(char *filename)
+{
+	;
+}
+
+char	**parse(char *filename)
+{
+	;
+}
