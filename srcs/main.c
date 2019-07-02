@@ -15,13 +15,12 @@
 
 int		main(int ac, char **av)
 {
-	int		fd;
 	char	**map;
 
 	if (ac == 2)
 	{
-		check_file(argv[1]);
-		map = parse(argv[1]);
+		if (!(map = parse(argv[1])))
+			return (EXIT_FAILURE);
 	}
 	else
 	{
