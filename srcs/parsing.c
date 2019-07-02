@@ -13,17 +13,24 @@
 
 #include "../includes/parsing.h"
 
-char	**parse(char *filename)
+static void	ft_strdel_2d(char ***tab)
+{
+	int		i;
+
+	i = -1;
+	while ((*tab)[i])
+		ft_strdel((*tab)[i]);
+	free(*tab);
+	tab = NULL;
+}
+
+char		**parse(char *filename)
 {
 	int		fd;
-	char	**ret;
+	char	**map;
 
 	if (!(fd = open(filename, O_RDONLY)))
 		return (NULL);
-	if (!(map = malloc()))
-	{
-		;
-	}
 	while (get_next_line(fd, &line))
 	{
 		;
