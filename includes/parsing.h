@@ -19,6 +19,6 @@
 # include <fcntl.h>
 
 int		check_file(char *filename);
-char	**parse(char *filename);
+char	**parse(char *filename, int nblines);
 
 #endif
