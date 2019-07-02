@@ -13,12 +13,15 @@
 
 #include "../includes/parsing.h"
 
-int		check_file(char *filename)
+static int	check_file(char *filename)
 {
 	;
 }
 
-char	**parse(char *filename)
+char		**parse(char *filename)
 {
-	;
+	int		fd;
+
+	if (!(fd = open(filename, O_RDONLY)))
+		return (NULL);
 }
