@@ -16,10 +16,13 @@
 int		main(int ac, char **av)
 {
 	char	**map;
+	int		nblines;
 
 	if (ac == 2)
 	{
-		if (!(map = parse(argv[1])))
+		if ((nblines = check_file(argv[1])) == -1)
+			return (EXIT_FAILURE);
+		if (!(map = parse(argv[1], nblines)))
 			return (EXIT_FAILURE);
 	}
 	else
