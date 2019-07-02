@@ -27,6 +27,7 @@ static void	ft_strdel_2d(char ***tab)
 char		**parse(char *filename, int nblines)
 {
 	int		fd;
+	int		i;
 	char	**map;
 
 	if (!(map = malloc(sizeof(*map) * nblines + 1)))
@@ -36,10 +37,13 @@ char		**parse(char *filename, int nblines)
 		ft_strdel_2d(&map);
 		return (NULL);
 	}
+	i = 0;
 	while (get_next_line(fd, &line))
 	{
-		;
+		map[i] = line;
+		i++;
 	}
+	map[i] = 0;
 	if (close(fd) == -1)
 	{
 		ft_strdel_2d(&map);
