@@ -13,15 +13,25 @@
 
 #include "../includes/parsing.h"
 
-static int	check_file(char *filename)
-{
-	;
-}
-
-char		**parse(char *filename)
+char	**parse(char *filename)
 {
 	int		fd;
+	char	**ret;
 
 	if (!(fd = open(filename, O_RDONLY)))
 		return (NULL);
+	if (!(map = malloc()))
+	{
+		;
+	}
+	while (get_next_line(fd, &line))
+	{
+		;
+	}
+	if (close(fd) == -1)
+	{
+		ft_strdel_2d(&map);
+		return (NULL);
+	}
+	return (map);
 }
