@@ -44,25 +44,28 @@ static int	count_chars(char *str)
 static int	check(int fd)
 {
 	int		len;
+	int		nblines;
 	char	*line;
 	
 	if (!(get_next_line(fd, &line)))
 	{
 		ft_strdel(&line);
-		return (1);
+		return (-1);
 	}
 	len = count_chars(&line);
 	ft_strdel(&line);
+	nblines = 1;
 	while (get_next_line(fd, &line))
 	{
 		if (!check_chars(line) || (count_chars(line) != len))
 		{
 			ft_strdel(&line);
-			return (1);
+			return (-1);
 		}
+		nblines++;
 		ft_strdel(&line);
 	}
-	return (0);
+	return (nblines);
 }
 
 int			check_file(char *filename)
@@ -72,10 +75,9 @@ int			check_file(char *filename)
 	
 	ret = 0;
 	if ((fd = open(filename, O_RDONLY)) == -1)
-		return (1);
-	if (!check(fd))
-		ret = 1;
+		return (-1);
+	ret = check(fd);
 	if (close(fd) == -1)
-		return (1);
+		return (-1);
 	return (ret);
 }
