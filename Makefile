@@ -25,7 +25,7 @@ LIB_FILE = libft.a
 LIB = $(addprefix $(LIB_DIR), $(LIB_FILE))
 
 INCLUDE_DIR = includes/
-INCLUDE_FILES = fdf.h
+INCLUDE_FILES = parsing.h
 INCLUDE = $(addprefix $(INCLUDE_DIR), $(INCLUDE_FILES))
 
 MLX_DIR = minilibx/
