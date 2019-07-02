@@ -24,7 +24,7 @@ static void	ft_strdel_2d(char ***tab)
 	tab = NULL;
 }
 
-char		**parse(char *filename)
+char		**parse(char *filename, int nblines)
 {
 	int		fd;
 	char	**map;
