@@ -14,8 +14,7 @@
 NAME = fdf
 
 SRCS_DIR = srcs/
-SRCS_FILES = main.c utilities.c draw_iso.c draw_para.c parsing.c check_file.c \
-			 special_cases.c
+SRCS_FILES = main.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 OBJS_DIR = objs/
@@ -25,27 +24,26 @@ LIB_DIR = libft/
 LIB_FILE = libft.a
 LIB = $(addprefix $(LIB_DIR), $(LIB_FILE))
 
+INCLUDE_DIR = includes/
+INCLUDE_FILES = fdf.h
+INCLUDE = $(addprefix $(INCLUDE_DIR), $(INCLUDE_FILES))
+
 MLX_DIR = minilibx/
 MLX_FILE = libmlx.a
 MLX = $(addprefix $(MLX_DIR), $(MLX_FILE))
 
-RESET = \033[0m
-RED = \033[1m\033[31m
-GREEN = \033[1m\033[32m
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes/ -O2
+CFLAGS = -Wall -Wextra -Werror -Iincludes/
 MLXFLAGS = -framework OpenGL -framework AppKit
 RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(MLX) $(OBJS)
-	@echo "$(GREEN)COMPILING FDF ...$(RESET)"
+$(NAME): $(LIB) $(MLX) $(OBJS) $(INCLUDE)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LIB) $(MLX) -o $(NAME)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@$(CC) $(CFLAGS) -o $@ -c $<
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(INCLUDE)
+	@$(CC) $(CFLAGS) $(MLXFLAGS) -o $@ -c $<
 
 $(LIB):
 	@make -C $(LIB_DIR)
@@ -54,7 +52,6 @@ $(MLX):
 	@make -C $(MLX_DIR)
 
 clean:
-	@echo "$(RED)DELETING ...$(RESET)"
 	@make -C $(LIB_DIR) clean
 	@make -C $(MLX_DIR) clean
 	@$(RM) $(OBJS)
