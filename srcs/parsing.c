@@ -29,8 +29,13 @@ char		**parse(char *filename, int nblines)
 	int		fd;
 	char	**map;
 
-	if (!(fd = open(filename, O_RDONLY)))
+	if (!(map = malloc(sizeof(*map) * nblines + 1)))
 		return (NULL);
+	if (!(fd = open(filename, O_RDONLY)))
+	{
+		ft_strdel_2d(&map);
+		return (NULL);
+	}
 	while (get_next_line(fd, &line))
 	{
 		;
