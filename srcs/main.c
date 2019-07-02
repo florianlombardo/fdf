@@ -15,6 +15,7 @@
 
 int		main(int ac, char **av)
 {
+	int		fd;
 	char	**map;
 
 	if (ac == 2)
